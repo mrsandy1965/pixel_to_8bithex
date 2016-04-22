@@ -3,7 +3,7 @@ A python script to convert a png image to 8 bit hex code.
 
 ## Instructions
 1. "Download ZIP".
-2. Exctract anywhere
+2. Extract anywhere
 3. Navigate to where the script is and run `chmod +x pixel2hex.py`.
 4. Add your .png images in the 'images' folder.
 5. Run the script: `./pixel2hex.py`.
