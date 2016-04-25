@@ -28,7 +28,7 @@ def main():
     # Runs for every png in images folder.
     for f in sorted(os.listdir(os.getcwd()+"/"+image_path)): 
         if f.endswith(".png"): # only for .png files
-            img = Image.open(f)
+            img = Image.open(image_path+"/"+f)
             pix = img.load()
             width, height = img.size
             file_name = f.split(".")[0]
