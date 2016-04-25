@@ -13,12 +13,10 @@ A python script to convert a png image to 8 bit hex code.
 The results will be overwritten if you run the script again. By removing an image from the images folder you will also remove it from the output.
 
 ## Example input & output
-Input
-
+###Input
 ![Alt text](http://i.imgur.com/1afoW3A.png "16x16 penguin sprite")
 
-Output
-
+###Output
 `x"e0",x"e0",x"e0",x"e0",x"e0",x"49",x"49",x"49",x"49",x"49",x"49",x"e0",x"e0",x"e0",x"e0",x"e0",
 x"e0",x"e0",x"e0",x"e0",x"49",x"ff",x"ff",x"ff",x"ff",x"ff",x"ff",x"49",x"e0",x"e0",x"e0",x"e0",
 x"e0",x"e0",x"e0",x"49",x"49",x"ff",x"ff",x"ff",x"ff",x"ff",x"ff",x"49",x"49",x"e0",x"e0",x"e0",
