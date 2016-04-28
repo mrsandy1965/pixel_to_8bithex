@@ -18,6 +18,14 @@ def images_folder_exists():
         return True
     else:
         return False
+
+def is_valid_image(f):
+    try:
+        file = Image.open(image_path+"/"+f)
+    except IOError:
+        print f + " is not an image"
+        return False
+    return file
         
 def main():  
     # Output file
@@ -25,10 +33,11 @@ def main():
     # Total images converted
     total_images = 0
 
+        
     # Runs for every png in images folder.
     for f in sorted(os.listdir(os.getcwd()+"/"+image_path)): 
-        if f.endswith(".png"): # only for .png files
-            img = Image.open(image_path+"/"+f)
+        img = is_valid_image(f)
+        if img:
             pix = img.load()
             width, height = img.size
             file_name = f.split(".")[0]
@@ -36,7 +45,10 @@ def main():
             # Loops through entire image
             for y in range(height):
                 for x in range(width):
-                    r, g, b, a = pix[x, y]
+                    if (img.mode == "RGBA"):
+                        r, g, b, a = pix[x, y]
+                    else:
+                        r, g, b = pix[x, y]
                     r_bits = color_to_bit_string(r, 3)
                     g_bits = color_to_bit_string(g, 3)
                     b_bits = color_to_bit_string(b, 2)
@@ -46,19 +58,19 @@ def main():
                      you will need to check for a certain color if
                      you need transparency
                     '''
-                    if (a == 0): #if pixel transparent
+                    if (img.mode == "RGBA" and a == 0): #if pixel transparent
                         openfile.write('x"TR"'+",")
                     else:
                         openfile.write('x"{0:02x}"'.format(num) + ",")
                 # adds the file name as comment on row 7
                 if (y == 7):
-                    if (a == 0): #if pixel transparent
+                    if (img.mode == "RGBA" and a == 0): #if pixel transparent
                         openfile.write("    -- %s" % file_name)
                     else:
                         openfile.write("    -- %s" % file_name)
                 openfile.write("\n")
             openfile.write("\n") #empty line after image has been converted
-            print "Successfully wrote %s to file" % f
+            print "Successfully wrote %s to output" % f
             total_images += 1
     if(total_images == 0):
         print "No images in folder. 0 Images converted."
