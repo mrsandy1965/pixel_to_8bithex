@@ -49,7 +49,7 @@ def main():
                     if (a == 0): #if pixel transparent
                         openfile.write('x"TR"'+",")
                     else:
-                        openfile.write('x"{:02x}"'.format(num) + ",")
+                        openfile.write('x"{0:02x}"'.format(num) + ",")
                 # adds the file name as comment on row 7
                 if (y == 7):
                     if (a == 0): #if pixel transparent
